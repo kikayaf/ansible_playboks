@@ -1,0 +1,17 @@
+---
+- name: Gather Cisco IOS device facts
+  hosts: routers
+  gather_facts: no
+
+  tasks:
+    - debug:
+        var: ansible_facts
+
+    - name: Collect All IOS facts
+      ios_facts:
+        gather_subset: interfaces
+      register: output
+
+    - name: Print Subset All 01
+      debug:
+        var: output
